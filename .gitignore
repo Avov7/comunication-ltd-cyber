@@ -1,0 +1,15 @@
+.env
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+db.sqlite3
+*.egg-info/
+dist/
+build/
+.venv/
+venv/
+env/
+more project clarifications.txt
+DEMO_GUIDE.md
+DEMO_GUIDE_HE.md

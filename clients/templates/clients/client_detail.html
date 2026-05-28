@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}Client Added{% endblock %}
+{% block content %}
+<h2>Client Added Successfully</h2>
+<p>Name: {% if vulnerable %}{{ client.name|safe }}{% else %}{{ client.name }}{% endif %}</p>
+<p>Phone: {{ client.phone }}</p>
+<p>Address: {{ client.address }}</p>
+<p>Package: {{ client.package }}</p>
+<p><a href="/clients/add">Add another client</a></p>
+{% endblock %}

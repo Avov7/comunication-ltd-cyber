@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Comunication LTD - {% block title %}{% endblock %}</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 600px; margin: 40px auto; padding: 0 20px; }
+        .error { color: red; }
+        .success { color: green; }
+        input { display: block; margin: 8px 0; padding: 6px; width: 100%; box-sizing: border-box; }
+        button { padding: 8px 20px; background: #0057a8; color: white; border: none; cursor: pointer; }
+        a { color: #0057a8; }
+        nav { margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+    <h1>Comunication LTD</h1>
+    <nav>
+        {% if request.session.user_id %}
+            <a href="/clients/add">Add Client</a> |
+            <a href="/change-password">Change Password</a> |
+            <a href="/logout">Logout</a>
+        {% else %}
+            <a href="/login">Login</a> |
+            <a href="/register">Register</a>
+        {% endif %}
+    </nav>
+    {% if messages %}
+        {% for message in messages %}
+            <p class="{% if message.tags == 'error' %}error{% else %}success{% endif %}">{{ message }}</p>
+        {% endfor %}
+    {% endif %}
+    {% block content %}{% endblock %}
+</body>
+</html>
